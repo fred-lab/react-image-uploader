@@ -20,9 +20,6 @@ services:
     volumes:
       - .:/home/docker:rw
       - ./docker/engine/php.ini:/usr/local/etc/php/conf.d/custom.ini:ro
-    depends_on:
-      - database
-
 
 # A package.json file is required with script command (npm run watch, npm run dev....)
 #  Log into this container with : docker-compose exec build sh
