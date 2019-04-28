@@ -1,16 +1,18 @@
 import React from 'react';
+import ImageDropZone from './dropzone/image-dropzone';
+import ImagePreview from './preview/image-preview';
 
-export default class ImageUploader extends React.Component {
-
-  /**
-   * Render the view
-   * @returns {*}
-   */
-  render() {
-    return (
-      <section className="image-uploader-app">
-        <h1>Image Uploader</h1>
-      </section>
-    );
-  }
+/**
+ * Main Component
+ * @returns {*}
+ * @constructor
+ */
+export default function ImageUploader() {
+  /** Render */
+  return (
+    <main className="image-uploader">
+      <ImageDropZone />
+      <ImagePreview />
+    </main>
+  );
 }

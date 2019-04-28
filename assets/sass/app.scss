@@ -1,0 +1,76 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+//Variables
+$full-white: #ffffff;
+$light-grey: #C4C4C4;
+$darker-light: #5d5d5d;
+$darker-dark: #000000;
+
+$dropZoneHeight: 65vh;
+$dropZoneWidth: 100vw;
+
+//Mixins
+@mixin box($width, $height, $background-color) {
+    width: $width;
+    height: $height;
+    background-color: $background-color;
+}
+
+@mixin flexCenter($direction) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: $direction;
+}
+
+@mixin circle-box($size, $background-color) {
+    @include box($size, $size, $background-color);
+    border-radius: $size;
+}
+
+//Style
+.image-drop-zone {
+    @include box($dropZoneWidth, $dropZoneHeight, $darker-light);
+    @include flexCenter(column);
+
+    .drop-zone {
+        $size-box: 30em;
+        @include flexCenter(column);
+        @include circle-box($size-box, $full-white);
+        padding: 0.5em;
+
+        position: relative;
+
+        .drop-label{
+            position: absolute;
+            text-align: center;
+            font-size: 2em;
+            color: $light-grey;
+            font-family: 'Montserrat', sans-serif;
+
+            i{
+                font-size: 3em;
+                padding-bottom: 0.2em;
+            }
+        }
+
+        input[type = 'file'] {
+            width: 0.1px;
+            height: 0.1px;
+            opacity: 0;
+            overflow: hidden;
+            position: absolute;
+            z-index: -1;
+        }
+
+
+    }
+}
+
+.image-preview {
+    @include box($dropZoneWidth, 100vh - $dropZoneHeight, $darker-dark);
+}
