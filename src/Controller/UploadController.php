@@ -5,17 +5,21 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
-/** @Route("/api", name="api_") */
+/** @Route("/api/upload", name="api_") */
 class UploadController extends AbstractController
 {
     /**
-     * @Route("/upload", name="upload")
+     * @Route("/init", name="upload")
      */
-    public function index()
+    public function init()
     {
-        return $this->json([
-            'message' => 'Welcome to your new controller!',
-            'path' => 'src/Controller/UploadController.php',
-        ]);
+        // todo
+    }
+    /**
+     * @Route("/transfer", name="upload")
+     */
+    public function transfer()
+    {
+        //todo
     }
 }

@@ -5,4 +5,10 @@ export default {
       LABEL_HOVER_FALSE: 'Drop here',
     },
   },
+  HOST: {
+    ROUTE: {
+      API_INIT_UPLOAD: '/api/upload/init',
+      API_UPLOAD: '/api/upload/transfer',
+    },
+  },
 };

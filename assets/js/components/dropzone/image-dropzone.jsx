@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Parameters from '../../parameters';
 import Dropzone from '../../services/Dropzone';
+import FileHandler from '../../services/FileHandler';
 
 /**
  * Drop zone component
@@ -23,8 +24,9 @@ export default function ImageDropZone() {
    * @param files
    */
   const handleFile = (files) => {
-    /* eslint-disable-next-line no-console */
-    console.log(files);
+    const filehandler = new FileHandler(files);
+
+    filehandler.uploadFiles();
   };
 
   /**
@@ -46,7 +48,7 @@ export default function ImageDropZone() {
 
       /** Handle the file on the drop event */
       dropzone.onDrop(event => handleFile(event.dataTransfer.files));
-    },
+    }, [],
   );
 
   /** Render */
@@ -107,7 +109,7 @@ export default function ImageDropZone() {
         </div>
 
         <form className="drop-form">
-          <input type="file" id="file-input" name="file-input" required onChange={e => handleFile(e.target.files)} />
+          <input type="file" id="file-input" name="file-input" multiple required onChange={e => handleFile(e.target.files)} />
         </form>
 
       </div>
