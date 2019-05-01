@@ -27,6 +27,13 @@ export default function ImageDropZone() {
     console.log(files);
   };
 
+  /**
+   * Open the file modal to select a file
+   */
+  const openFileModal = () => {
+    document.getElementById('file-input').click();
+  };
+
 
   /** Effects */
   useEffect(
@@ -45,10 +52,10 @@ export default function ImageDropZone() {
   /** Render */
   return (
     <section className="image-drop-zone">
-      <div className="drop-zone" ref={dropZoneElement}>
+      <div className={isHover ? 'drop-zone hover' : 'drop-zone'} ref={dropZoneElement} role="presentation" onClick={openFileModal}>
 
         <svg
-          className="svg-border"
+          className={isHover ? 'svg-border rotate' : 'svg-border'}
           width="797"
           height="503"
           viewBox="0 0 797 503"
@@ -63,7 +70,7 @@ export default function ImageDropZone() {
               cx="399"
               cy="251"
               r="235"
-              stroke="#C4C4C4"
+              stroke={isHover ? '#4993fa' : '#C4C4C4'}
               strokeWidth="18"
               strokeLinecap="round"
               strokeDasharray="100 40"
@@ -93,9 +100,10 @@ export default function ImageDropZone() {
           </defs>
         </svg>
 
-        <div className="drop-label">
+        <div className={isHover ? 'drop-label hover' : 'drop-label'}>
           <i className="far fa-arrow-alt-circle-down" />
           <h2>{isHover ? text.LABEL_HOVER_TRUE : text.LABEL_HOVER_FALSE}</h2>
+          {!isHover && <p>or click here</p>}
         </div>
 
         <form className="drop-form">

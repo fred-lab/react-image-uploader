@@ -7,6 +7,7 @@
 //Variables
 $full-white: #ffffff;
 $light-grey: #C4C4C4;
+$medium-blue: #4993fa;
 $darker-light: #5d5d5d;
 $darker-dark: #000000;
 
@@ -44,6 +45,8 @@ $dropZoneWidth: 100vw;
         padding: 0.5em;
 
         position: relative;
+        cursor: pointer;
+        transition: all .5s ease-out;
 
         .drop-label{
             position: absolute;
@@ -56,6 +59,10 @@ $dropZoneWidth: 100vw;
                 font-size: 3em;
                 padding-bottom: 0.2em;
             }
+
+            p{
+                font-size: 0.5em;
+            }
         }
 
         input[type = 'file'] {
@@ -66,8 +73,20 @@ $dropZoneWidth: 100vw;
             position: absolute;
             z-index: -1;
         }
+    }
 
+    .hover{
+        color: $medium-blue!important;
+        transform: scale(1.1,1.1);
+        transition: all .3s ease-out;
+    }
 
+    .rotate{
+        transform: rotate(30deg);
+    }
+
+    .svg-border{
+        transition: all .3s ease-in-out;
     }
 }
 
