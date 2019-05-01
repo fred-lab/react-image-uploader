@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Parameters from '../../parameters';
+import Dropzone from '../../services/Dropzone';
 
 /**
  * Drop zone component
@@ -9,7 +10,8 @@ import Parameters from '../../parameters';
 export default function ImageDropZone() {
   /** Variables */
   const text = Parameters.TRAD.IMAGE_UPLOADER;
-  const dropZone = React.createRef();
+  const dropZoneElement = React.createRef();
+  const dropzone = new Dropzone(dropZoneElement);
 
   /** States */
   const [isHover, setIsHover] = useState(false);
@@ -25,47 +27,25 @@ export default function ImageDropZone() {
     console.log(files);
   };
 
-  /**
-   * Set a list of listener with a callback
-   * @param types
-   * @param callback
-   */
-  const setListeners = (types, callback) => {
-    types.forEach((eventName) => {
-      dropZone.current.addEventListener(eventName, callback, false);
-    });
-  };
-
-  /**
-   * Prevent default behaviors
-   * @param event
-   */
-  const preventDefaults = (event) => {
-    event.preventDefault();
-    event.stopPropagation();
-  };
 
   /** Effects */
   useEffect(
     () => {
-      /** Prevent default behaviors */
-      setListeners(['dragenter', 'dragover', 'dragleave', 'drop'], preventDefaults);
-
       /** When a element enter in the drop zone, highlight the drop zone */
-      setListeners(['dragenter', 'dragover'], () => setIsHover(true));
+      dropzone.onEnter(() => setIsHover(true));
 
       /** When a element leave (or drop in) the drop zone, unhighlight the drop zone */
-      setListeners(['dragleave', 'drop'], () => setIsHover(false));
+      dropzone.onLeave(() => setIsHover(false));
 
       /** Handle the file on the drop event */
-      setListeners(['drop'], event => handleFile(event.dataTransfer.files));
+      dropzone.onDrop(event => handleFile(event.dataTransfer.files));
     },
   );
 
   /** Render */
   return (
     <section className="image-drop-zone">
-      <div className="drop-zone" ref={dropZone}>
+      <div className="drop-zone" ref={dropZoneElement}>
 
         <svg
           className="svg-border"
